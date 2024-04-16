@@ -7,6 +7,7 @@ import { yellowImg } from "../utils";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
+import { models, sizes } from "../constants";
 
 const Model = () => {
   const [size, setSize] = useState("small");
@@ -81,6 +82,35 @@ const Model = () => {
             <p className=" text-sm font-light text-center mb-5">
               {model.title}
             </p>
+            <div className="flex-center ">
+              <ul className="color-container">
+                {models.map((item, i) => (
+                  <li
+                    key={i}
+                    className="w-6 h-6 rounded-full mx-2 cursor-pointer"
+                    style={{
+                      backgroundColor: item.color[0],
+                    }}
+                    onClick={() => setModel(item)}
+                  />
+                ))}
+              </ul>
+              <button className="size-btn-container">
+                {sizes.map(({ label, value }) => (
+                  <span
+                    key={label}
+                    className="size-btn"
+                    style={{
+                      backgroundColor: size === value ? "white" : "transparent",
+                      color: size === value ? "black" : "white",
+                    }}
+                    onClick={() => setSize(value)}
+                  >
+                    {label}
+                  </span>
+                ))}
+              </button>
+            </div>
           </div>
         </div>
       </div>
